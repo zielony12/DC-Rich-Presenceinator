@@ -84,7 +84,7 @@ def main():
 	error = QLabel("Error:\nYou must enter a client ID.", win)
 	error.move(10,180)
 	
-	label_1 = QLabel("ID klienta:", win) #client id
+	label_1 = QLabel("Client ID:", win) #client id
 	label_1.move(10,15)
 	label_1.show()
 	
