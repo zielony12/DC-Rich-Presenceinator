@@ -24,82 +24,75 @@ def main():
 		print("rozłączono.") #disconnected
 	
 	def Start():
-		pre.start()
+		presence.start()
 		button_1.setText("Stop")
 		button_1.clicked.disconnect(Start)
 		button_1.clicked.connect(Stop)
 	def Apply():
-		if textbox_1.text() == "":
-			error.show()
-		if textbox_2.text() == "":
-			textbox_2.setText(" ")
-		if textbox_3.text() == "":
-			textbox_3.setText(" ")
-		if textbox_4.text() == "":
-			textbox_4.setText(" ")
-		if textbox_5.text() == "":
-			textbox_5.setText(" ")
-		else:
-			error.hide()
-			vars.client_id = textbox_1.text()
-			vars.details = textbox_2.text()
-			vars.state = textbox_3.text()
-			vars.small_image = textbox_4.text()
-			vars.big_image = textbox_5.text()
-			
-			client_id = vars.client_id
-			rpc_obj = rpc.DiscordIpcClient.for_platform(client_id)
-			print("połączono.") #connected
+		error.hide()
+	
+		vars.client_id = textbox_1.text()
+		vars.details = textbox_2.text()
+		vars.state = textbox_3.text()
+		vars.big_image = textbox_4.text()
+		vars.small_image = textbox_5.text()
 		
-			time.sleep(5)
-			start_time = mktime(time.localtime())
-			while True:
-			    activity = {
-			    		"details": vars.details,
-			    		"state": vars.state,
-			            "timestamps": {
-			                "start": start_time
-			            },
-			            "assets": {
-			                #"small_text": "",
-			                "small_image": vars.small_image,
-			                #"large_text": "",
-			                "large_image": vars.big_image
-			            }
-			        }
-			    rpc_obj.set_activity(activity)
-			    time.sleep(900)
-	pre = Thread(target=Apply)
-	pre.daemon = True
+		if vars.small_image == str():
+			vars.small_image = " "
+		
+		client_id = vars.client_id
+		rpc_obj = rpc.DiscordIpcClient.for_platform(client_id)
+		print("connected.") #connected
+	
+		time.sleep(5)
+		start_time = mktime(time.localtime())
+		while True:
+		    activity = {
+		    		"details": vars.details,
+		    		"state": vars.state,
+		            "timestamps": {
+		                "start": start_time
+		            },
+		            "assets": {
+		                #"small_text": "",
+		                "small_image": vars.small_image,
+		                #"large_text": "",
+		                "large_image": vars.big_image
+		            }
+		        }
+		    rpc_obj.set_activity(activity)
+		    time.sleep(900)
+	presence = Thread(target=Apply)
+	presence.daemon = True
 	app = QApplication(sys.argv)
 	
 	win = QWidget()
 	win.resize(vars.winHeight,vars.winWidth)
 	win.setMinimumSize(vars.winHeight,vars.winWidth)
 	win.setMaximumSize(vars.winHeight,vars.winWidth)
-	win.setWindowTitle("DC Rich Presenceinator v1.0 PL")
+	win.setWindowTitle("DC Rich Presenceinator v1.0 EN")
 	win.show()
 	
-	error = QLabel("Błąd:\nMusisz podać ID klienta.", win)
+	error = QLabel("Error:\nYou must specify Client ID", win)
 	error.move(10,180)
 	
-	label_1 = QLabel("ID klienta:", win) #client id
+	label_1 = QLabel("Client ID:", win) #client id
 	label_1.move(10,15)
 	label_1.show()
 	
-	label_2 = QLabel("Stan:", win) #state
+	label_2 = QLabel("State:", win) #state
 	label_2.move(10,45)
 	label_2.show()
 	
-	label_3 = QLabel("Detale:", win) #details
+	label_3 = QLabel("Details:", win) #details
 	label_3.move(10,77)
 	label_3.show()
 	
-	label_4 = QLabel("Duże zdj.:", win) #large pic.
+	label_4 = QLabel("Large pic.:", win) #large pic.
 	label_4.move(10,110)
 	label_4.show()
 	
-	label_5 = QLabel("Małe zdj.:", win) #small pic.
+	label_5 = QLabel("Small pic.:", win) #small pic.
 	label_5.move(10,144)
 	label_5.show()
 	
