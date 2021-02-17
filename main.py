@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import sys
-import rpc #rpc.py
+import rpc
 import time
 from time import mktime
 from threading import Thread
@@ -21,7 +21,7 @@ def main():
 		button_1.setText("Start")
 		button_1.clicked.connect(Start)
 		button_1.clicked.disconnect(Stop)
-		print("disconnected.") #disconnected
+		print("rozłączono.") #disconnected
 	
 	def Start():
 		pre.start()
@@ -49,7 +49,7 @@ def main():
 			
 			client_id = vars.client_id
 			rpc_obj = rpc.DiscordIpcClient.for_platform(client_id)
-			print("connected.") #connected
+			print("połączono.") #connected
 		
 			time.sleep(5)
 			start_time = mktime(time.localtime())
@@ -77,29 +77,29 @@ def main():
 	win.resize(vars.winHeight,vars.winWidth)
 	win.setMinimumSize(vars.winHeight,vars.winWidth)
 	win.setMaximumSize(vars.winHeight,vars.winWidth)
-	win.setWindowTitle("DC Rich Presenceinator v1.0 EN")
+	win.setWindowTitle("DC Rich Presenceinator v1.0 PL")
 	win.show()
 	
-	error = QLabel("Error:\nYou must enter a client ID.", win)
+	error = QLabel("Błąd:\nMusisz podać ID klienta.", win)
 	error.move(10,180)
 	
-	label_1 = QLabel("Client ID:", win) #client id
+	label_1 = QLabel("ID klienta:", win) #client id
 	label_1.move(10,15)
 	label_1.show()
 	
-	label_2 = QLabel("State:", win) #state
+	label_2 = QLabel("Stan:", win) #state
 	label_2.move(10,45)
 	label_2.show()
 	
-	label_3 = QLabel("Details:", win) #details
+	label_3 = QLabel("Detale:", win) #details
 	label_3.move(10,77)
 	label_3.show()
 	
-	label_4 = QLabel("Large pic.:", win) #large pic.
+	label_4 = QLabel("Duże zdj.:", win) #large pic.
 	label_4.move(10,110)
 	label_4.show()
 	
-	label_5 = QLabel("Small pic.:", win) #small pic.
+	label_5 = QLabel("Małe zdj.:", win) #small pic.
 	label_5.move(10,144)
 	label_5.show()
 	
