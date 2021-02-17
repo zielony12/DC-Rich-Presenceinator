@@ -5,7 +5,6 @@ import sys
 import rpc #rpc.py
 import time
 from time import mktime
-from apply import *
 from threading import Thread
 
 def main():
