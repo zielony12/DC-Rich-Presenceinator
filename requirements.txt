@@ -1,3 +1,1 @@
-Python 3.9 or newer
-pypresence for python3
-PyQt5 for python3
+PyQt5
