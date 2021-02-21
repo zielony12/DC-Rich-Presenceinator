@@ -109,7 +109,7 @@ def main():
 	win = Tk()
 	win.geometry("290x450")
 	win.resizable(False, False)
-	win.title("DC Rich Presenceinator v1.3 EN")
+	win.title("DC Rich Presenceinator v1.4 EN")
 	
 	label_1 = Label(text="Client ID:") #client id
 	label_1.place(x=10,y=15)
